@@ -1,125 +1,119 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>史前巨兽 · 虚拟博物馆</title>
-<meta name="description" content="史前巨兽 - 恐龙虚拟博物馆。时间轴、馆藏画廊、化石与3D模型，博物馆级线上展览模板。"/>
-<link rel="stylesheet" href="styles.css" />
-<!-- model-viewer (3D viewer) -->
-<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>虚拟恐龙博物馆</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body { font-family: 'Arial', sans-serif; background-color: #f8f8f8; }
+    header { background-color: #2c3e50; color: white; padding: 20px 0; text-align: center; }
+    nav a { color: white; margin: 0 15px; text-decoration: none; }
+    nav a:hover { text-decoration: underline; }
+    .section { padding: 60px 20px; }
+    .timeline { border-left: 3px solid #2c3e50; margin-left: 20px; padding-left: 20px; }
+    .timeline-item { margin-bottom: 20px; }
+    canvas { width: 100%; height: 400px; display: block; background-color: #000; }
+    footer { background-color: #2c3e50; color: white; text-align: center; padding: 20px 0; margin-top: 40px; }
+  </style>
 </head>
 <body>
-<header class="site-header">
-  <div class="container header-inner">
-    <div class="brand">
-      <a href="index.html" class="brand-link">
-        <div class="brand-title">史前巨兽</div>
-        <div class="brand-sub">Dinosaur Virtual Museum</div>
-      </a>
-    </div>
-    <nav class="site-nav" aria-label="主要导航">
-      <a href="index.html" class="nav-link active">首页</a>
-      <a href="gallery.html" class="nav-link">馆藏画廊</a>
-      <a href="fossils.html" class="nav-link">化石与研究</a>
-      <a href="education.html" class="nav-link">教育专区</a>
-    </nav>
-  </div>
+
+<header>
+  <h1>虚拟恐龙博物馆</h1>
+  <nav>
+    <a href="#home">首页</a>
+    <a href="#gallery">展览馆</a>
+    <a href="#timeline">恐龙时间轴</a>
+    <a href="#education">教育资源</a>
+  </nav>
 </header>
 
-<main>
-  <!-- Hero -->
-  <section class="hero">
-    <div class="hero-inner container">
-      <div class="hero-text">
-        <h1>史前巨兽</h1>
-        <p class="lead">穿越 2.3 亿年 · 探索恐龙世界 — 博物馆级线上展览</p>
-        <div class="hero-cta">
-          <a class="btn" href="#timeline">开始参观 · 时间轴</a>
-          <a class="btn ghost" href="gallery.html">进入画廊</a>
-        </div>
-      </div>
+<section id="home" class="section text-center">
+  <h2>欢迎来到恐龙的世界</h2>
+  <p>探索史前巨兽，体验互动3D模型，了解恐龙进化历程。</p>
+</section>
 
-      <div class="hero-media">
-        <!-- 3D model preview (replace src with your .glb .gltf) -->
-        <model-viewer src="https://modelviewer.dev/shared-assets/models/Duck.glb" alt="示例 3D 模型" shadow-intensity="0.5" camera-controls auto-rotate style="width:100%; height:320px; border-radius:8px;"></model-viewer>
-        <p class="note">示例 3D 模型：请替换为真实恐龙 glTF/glb 文件（见 docs）</p>
-      </div>
+<section id="gallery" class="section container">
+  <h2 class="mb-4">3D 恐龙模型展示</h2>
+  <canvas id="dinoCanvas"></canvas>
+  <p class="mt-3">示例 3D 模型加载自 <a href="https://github.com/KhronosGroup/glTF-Sample-Models" target="_blank">glTF Sample Models</a></p>
+</section>
+
+<section id="timeline" class="section container">
+  <h2 class="mb-4">恐龙时间轴</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <strong>2.3亿年前：</strong> 恐龙首次出现在三叠纪晚期
     </div>
-  </section>
-
-  <!-- Timeline teaser -->
-  <section id="timeline" class="timeline-section container">
-    <h2>地质时代时间轴</h2>
-    <p class="muted">滑动下方时间轴，查看三叠纪 → 侏罗纪 → 白垩纪的关键事件与代表物种</p>
-
-    <div class="timeline-wrapper">
-      <input id="timeline-range" class="timeline-range" type="range" min="0" max="2" step="1" value="0" />
-      <div class="timeline-cards" id="timeline-cards" aria-live="polite"></div>
-      <div class="timeline-controls">
-        <button id="prev-btn" class="mini-btn">◀</button>
-        <button id="next-btn" class="mini-btn">▶</button>
-      </div>
+    <div class="timeline-item">
+      <strong>1.5亿年前：</strong> 中侏罗纪，蜥脚类恐龙繁盛
     </div>
-    <div style="margin-top:18px;">
-      <a class="link" href="fossils.html">深入：化石与研究 →</a>
-    </div>
-  </section>
-
-  <!-- Highlights -->
-  <section class="container highlights">
-    <h2>展馆亮点</h2>
-    <div class="grid-3">
-      <article class="feature card">
-        <img src="https://www.nhm.ac.uk/content/dam/nhm-www/discover/cretaceous-period/cretaceous-landscape-polar-forest-full-width.jpg" alt="环境复原">
-        <div class="card-body">
-          <h3>古生态复原</h3>
-          <p>重建恐龙所处的生态系统：气候、植被与食物链。</p>
-        </div>
-      </article>
-
-      <article class="feature card">
-        <img src="https://www.amnh.org/var/ezflow_site/storage/images/media/amnh/images/exhibitions/permanent-exhibitions/fossil-halls/hall-of-saurischian-dinosaurs2/tyrannosaurus-rex-2025-2460-1384/6205520-1-eng-US/tyrannosaurus-rex-2025-2460-1384_wideexact_2460.jpg" alt="霸王龙标本">
-        <div class="card-body">
-          <h3>权威馆藏</h3>
-          <p>来源：AMNH / NHM / Smithsonian（示例图片，使用前请申请授权）</p>
-        </div>
-      </article>
-
-      <article class="feature card">
-        <img src="https://naturalhistory.si.edu/sites/default/files/media/image/dino-skeleton-hall.jpg" alt="化石厅">
-        <div class="card-body">
-          <h3>互动学习</h3>
-          <p>3D 模型、课堂教案与自测题，支持教学与科研使用。</p>
-        </div>
-      </article>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="container">
-    <div class="footer-grid">
-      <div>
-        <strong>史前巨兽 · 虚拟博物馆</strong><br/>
-        虚拟展览模板 · 可编辑
-      </div>
-      <div>
-        <strong>版权与图片</strong><br/>
-        示例图片来自 AMNH / NHM / Smithsonian / Britannica（请在上线前完成授权）
-      </div>
-      <div>
-        <strong>联系</strong><br/>
-        email: your-museum@example.org
-      </div>
-    </div>
-
-    <div class="credits">
-      © <span id="year"></span> 史前巨兽 · Virtual Museum — 制作：策展模板团队
+    <div class="timeline-item">
+      <strong>6600万年前：</strong> 白垩纪末期恐龙灭绝
     </div>
   </div>
+</section>
+
+<section id="education" class="section container">
+  <h2 class="mb-4">教育资源</h2>
+  <div class="row">
+    <div class="col-md-4">
+      <img src="https://rawcdn.githack.com/niuguanwen123-ship-it/dino-virtual-museum/main/images/fossil1.jpg" class="img-fluid" alt="恐龙化石">
+      <p>恐龙化石示例</p>
+    </div>
+    <div class="col-md-4">
+      <img src="https://rawcdn.githack.com/niuguanwen123-ship-it/dino-virtual-museum/main/images/dino1.jpg" class="img-fluid" alt="恐龙复原图">
+      <p>恐龙复原图</p>
+    </div>
+    <div class="col-md-4">
+      <img src="https://rawcdn.githack.com/niuguanwen123-ship-it/dino-virtual-museum/main/images/fossil2.jpg" class="img-fluid" alt="化石研究">
+      <p>化石研究示意</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>&copy; 2025 虚拟恐龙博物馆</p>
 </footer>
 
-<script src="scripts.js"></script>
+<!-- Three.js + GLTFLoader -->
+<script type="module">
+import * as THREE from 'https://cdn.jsdelivr.net/npm/three@0.150.1/build/three.module.js';
+import { GLTFLoader } from 'https://cdn.jsdelivr.net/npm/three@0.150.1/examples/jsm/loaders/GLTFLoader.js';
+
+const canvas = document.getElementById('dinoCanvas');
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true });
+renderer.setSize(canvas.clientWidth, 400);
+
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0xaaaaaa);
+
+const camera = new THREE.PerspectiveCamera(45, canvas.clientWidth / 400, 0.1, 1000);
+camera.position.set(0, 1.5, 3);
+
+const light = new THREE.HemisphereLight(0xffffff, 0x444444);
+light.position.set(0, 20, 0);
+scene.add(light);
+
+const loader = new GLTFLoader();
+loader.load(
+  'https://rawcdn.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/T-Rex/glTF-Binary/T-Rex.glb',
+  function(gltf) {
+    scene.add(gltf.scene);
+    gltf.scene.position.set(0, 0, 0);
+  },
+  undefined,
+  function(error) { console.error(error); }
+);
+
+function animate() {
+  requestAnimationFrame(animate);
+  scene.rotation.y += 0.005;
+  renderer.render(scene, camera);
+}
+animate();
+</script>
+
 </body>
 </html>
