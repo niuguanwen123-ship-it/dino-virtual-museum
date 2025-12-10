@@ -1,80 +1,81 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>虚拟恐龙博物馆</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    body { font-family: 'Arial', sans-serif; background-color: #f8f8f8; }
-    header { background-color: #2c3e50; color: white; padding: 20px 0; text-align: center; }
-    nav a { color: white; margin: 0 15px; text-decoration: none; }
-    nav a:hover { text-decoration: underline; }
-    .section { padding: 60px 20px; }
-    .timeline { border-left: 3px solid #2c3e50; margin-left: 20px; padding-left: 20px; }
-    .timeline-item { margin-bottom: 20px; }
-    canvas { width: 100%; height: 400px; display: block; background-color: #000; }
-    footer { background-color: #2c3e50; color: white; text-align: center; padding: 20px 0; margin-top: 40px; }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>虚拟恐龙博物馆</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+body { font-family: 'Arial', sans-serif; background-color: #f8f8f8; scroll-behavior: smooth; }
+header { background-color: #2c3e50; color: white; padding: 20px 0; text-align: center; position: sticky; top: 0; z-index: 999;}
+nav a { color: white; margin: 0 15px; text-decoration: none; font-weight: bold; }
+nav a:hover { text-decoration: underline; }
+.section { padding: 60px 20px; }
+.timeline { border-left: 3px solid #2c3e50; margin-left: 20px; padding-left: 20px; }
+.timeline-item { opacity: 0; transform: translateX(-50px); margin-bottom: 20px; transition: all 0.8s ease; }
+.timeline-item.visible { opacity: 1; transform: translateX(0); }
+canvas { width: 100%; height: 400px; display: block; background-color: #000; }
+footer { background-color: #2c3e50; color: white; text-align: center; padding: 20px 0; margin-top: 40px; }
+.model-buttons button { margin: 5px; }
+</style>
 </head>
 <body>
 
 <header>
-  <h1>虚拟恐龙博物馆</h1>
-  <nav>
-    <a href="#home">首页</a>
-    <a href="#gallery">展览馆</a>
-    <a href="#timeline">恐龙时间轴</a>
-    <a href="#education">教育资源</a>
-  </nav>
+<h1>虚拟恐龙博物馆</h1>
+<nav>
+<a href="#home">首页</a>
+<a href="#gallery">展览馆</a>
+<a href="#timeline">恐龙时间轴</a>
+<a href="#education">教育资源</a>
+</nav>
 </header>
 
 <section id="home" class="section text-center">
-  <h2>欢迎来到恐龙的世界</h2>
-  <p>探索史前巨兽，体验互动3D模型，了解恐龙进化历程。</p>
+<h2>欢迎来到恐龙的世界</h2>
+<p>探索史前巨兽，体验互动3D模型，了解恐龙进化历程。</p>
 </section>
 
 <section id="gallery" class="section container">
-  <h2 class="mb-4">3D 恐龙模型展示</h2>
-  <canvas id="dinoCanvas"></canvas>
-  <p class="mt-3">示例 3D 模型加载自 <a href="https://github.com/KhronosGroup/glTF-Sample-Models" target="_blank">glTF Sample Models</a></p>
+<h2 class="mb-4">3D 恐龙模型展示</h2>
+<div class="model-buttons mb-3 text-center">
+<button class="btn btn-primary" onclick="switchModel('T-Rex')">暴龙 T-Rex</button>
+<button class="btn btn-success" onclick="switchModel('Triceratops')">三角龙 Triceratops</button>
+<button class="btn btn-warning" onclick="switchModel('Velociraptor')">迅猛龙 Velociraptor</button>
+</div>
+<canvas id="dinoCanvas"></canvas>
+<p class="mt-3">模型来源: <a href="https://github.com/KhronosGroup/glTF-Sample-Models" target="_blank">glTF Sample Models</a></p>
 </section>
 
 <section id="timeline" class="section container">
-  <h2 class="mb-4">恐龙时间轴</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <strong>2.3亿年前：</strong> 恐龙首次出现在三叠纪晚期
-    </div>
-    <div class="timeline-item">
-      <strong>1.5亿年前：</strong> 中侏罗纪，蜥脚类恐龙繁盛
-    </div>
-    <div class="timeline-item">
-      <strong>6600万年前：</strong> 白垩纪末期恐龙灭绝
-    </div>
-  </div>
+<h2 class="mb-4">恐龙时间轴</h2>
+<div class="timeline">
+  <div class="timeline-item">2.3亿年前：恐龙首次出现在三叠纪晚期</div>
+  <div class="timeline-item">1.5亿年前：中侏罗纪，蜥脚类恐龙繁盛</div>
+  <div class="timeline-item">6600万年前：白垩纪末期恐龙灭绝</div>
+</div>
 </section>
 
 <section id="education" class="section container">
-  <h2 class="mb-4">教育资源</h2>
-  <div class="row">
-    <div class="col-md-4">
-      <img src="https://rawcdn.githack.com/niuguanwen123-ship-it/dino-virtual-museum/main/images/fossil1.jpg" class="img-fluid" alt="恐龙化石">
-      <p>恐龙化石示例</p>
-    </div>
-    <div class="col-md-4">
-      <img src="https://rawcdn.githack.com/niuguanwen123-ship-it/dino-virtual-museum/main/images/dino1.jpg" class="img-fluid" alt="恐龙复原图">
-      <p>恐龙复原图</p>
-    </div>
-    <div class="col-md-4">
-      <img src="https://rawcdn.githack.com/niuguanwen123-ship-it/dino-virtual-museum/main/images/fossil2.jpg" class="img-fluid" alt="化石研究">
-      <p>化石研究示意</p>
-    </div>
-  </div>
+<h2 class="mb-4">教育资源</h2>
+<div class="row">
+<div class="col-md-4">
+<img src="https://rawcdn.githack.com/niuguanwen123-ship-it/dino-virtual-museum/main/images/fossil1.jpg" class="img-fluid" alt="恐龙化石">
+<p>恐龙化石示例</p>
+</div>
+<div class="col-md-4">
+<img src="https://rawcdn.githack.com/niuguanwen123-ship-it/dino-virtual-museum/main/images/dino1.jpg" class="img-fluid" alt="恐龙复原图">
+<p>恐龙复原图</p>
+</div>
+<div class="col-md-4">
+<img src="https://rawcdn.githack.com/niuguanwen123-ship-it/dino-virtual-museum/main/images/fossil2.jpg" class="img-fluid" alt="化石研究">
+<p>化石研究示意</p>
+</div>
+</div>
 </section>
 
 <footer>
-  <p>&copy; 2025 虚拟恐龙博物馆</p>
+<p>&copy; 2025 虚拟恐龙博物馆</p>
 </footer>
 
 <!-- Three.js + GLTFLoader -->
@@ -96,23 +97,47 @@ const light = new THREE.HemisphereLight(0xffffff, 0x444444);
 light.position.set(0, 20, 0);
 scene.add(light);
 
+let currentModel = null;
 const loader = new GLTFLoader();
-loader.load(
-  'https://rawcdn.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/T-Rex/glTF-Binary/T-Rex.glb',
-  function(gltf) {
-    scene.add(gltf.scene);
-    gltf.scene.position.set(0, 0, 0);
-  },
-  undefined,
-  function(error) { console.error(error); }
-);
+const models = {
+  "T-Rex": "https://rawcdn.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/T-Rex/glTF-Binary/T-Rex.glb",
+  "Triceratops": "https://rawcdn.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/Triceratops/glTF-Binary/Triceratops.glb",
+  "Velociraptor": "https://rawcdn.githack.com/KhronosGroup/glTF-Sample-Models/master/2.0/Velociraptor/glTF-Binary/Velociraptor.glb"
+};
 
-function animate() {
+function switchModel(name){
+  if(currentModel) scene.remove(currentModel);
+  loader.load(models[name],
+    function(gltf){
+      currentModel = gltf.scene;
+      scene.add(currentModel);
+      currentModel.position.set(0,0,0);
+    },
+    undefined,
+    function(error){ console.error(error); }
+  );
+}
+switchModel('T-Rex'); // 初始显示 T-Rex
+
+function animate(){
   requestAnimationFrame(animate);
-  scene.rotation.y += 0.005;
-  renderer.render(scene, camera);
+  if(currentModel) currentModel.rotation.y += 0.005;
+  renderer.render(scene,camera);
 }
 animate();
+
+// 滚动时间轴动画
+const timelineItems = document.querySelectorAll('.timeline-item');
+function checkTimeline(){
+  const triggerBottom = window.innerHeight * 0.8;
+  timelineItems.forEach(item => {
+    const itemTop = item.getBoundingClientRect().top;
+    if(itemTop < triggerBottom) item.classList.add('visible');
+  });
+}
+window.addEventListener('scroll', checkTimeline);
+checkTimeline(); // 初始化检查
+
 </script>
 
 </body>
