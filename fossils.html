@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>化石与研究 · 史前巨兽</title>
+<link rel="stylesheet" href="styles.css" />
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+<header class="site-header container">
+  <a href="index.html" class="brand-link">← 返回首页</a>
+  <h1>化石与研究</h1>
+</header>
+
+<main class="container">
+  <section>
+    <h2>发掘现场</h2>
+    <p>介绍发掘流程、野外记录、原位拍照与夹板运输。</p>
+    <img src="https://naturalhistory.si.edu/sites/default/files/media/image/ceratosaurus-excavation.jpg" alt="发掘现场" />
+  </section>
+
+  <section>
+    <h2>3D 扫描与建模</h2>
+    <p>我们鼓励对标本进行 photogrammetry 或 CT 扫描，并将数据以 glTF/glb 格式展示。</p>
+    <model-viewer src="https://modelviewer.dev/shared-assets/models/RobotExpressive.glb" alt="示例化石 3D" camera-controls style="width:100%; height:420px;"></model-viewer>
+    <p class="muted">替换为你的 glTF 模型：一旦上传到 CDN（或 GitHub），把 URL 替换到 model-viewer 的 src。</p>
+  </section>
+
+  <section>
+    <h2>年代测定</h2>
+    <p>简述放射性同位素测年、地层学与磁性地层分析。</p>
+  </section>
+</main>
+
+<footer class="site-footer container">请在上线前核实引用并完成图片授权</footer>
+</body>
+</html>

@@ -1,0 +1,23 @@
+[
+  {
+    "id": 0,
+    "name": "三叠纪",
+    "years": "~252–201 Ma",
+    "summary": "最早的恐龙分化，陆地生态逐步恢复。主要植物为裸子植物和蕨类。",
+    "image": "https://www.nhm.ac.uk/content/dam/nhm-www/discover/triassic-period/triassic-landscape.jpg"
+  },
+  {
+    "id": 1,
+    "name": "侏罗纪",
+    "years": "~201–145 Ma",
+    "summary": "巨型蜥脚类与多样的兽脚类繁盛，森林与大植被覆盖陆地。",
+    "image": "https://www.nhm.ac.uk/content/dam/nhm-www/discover/jurassic-period/jurassic-landscape.jpg"
+  },
+  {
+    "id": 2,
+    "name": "白垩纪",
+    "years": "~145–66 Ma",
+    "summary": "开花植物崛起，恐龙多样性达到顶峰。末期遭遇全球性灾变。",
+    "image": "https://www.nhm.ac.uk/content/dam/nhm-www/discover/cretaceous-period/cretaceous-landscape.jpg"
+  }
+]

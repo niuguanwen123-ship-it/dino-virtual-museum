@@ -1,0 +1,71 @@
+:root{
+  --bg:#07080a;
+  --panel:#0f1316;
+  --accent:#d6a94f; /* 古金色强调 */
+  --muted:#9aa3ab;
+  --text:#eaeff2;
+  --radius:12px;
+  --container:1100px;
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: "Noto Sans SC", "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  background:var(--bg);
+  color:var(--text);
+  -webkit-font-smoothing:antialiased;
+}
+.container{max-width:var(--container); margin:0 auto; padding:36px 20px}
+
+/* header */
+.site-header{background:linear-gradient(180deg,rgba(0,0,0,.4),transparent); position:sticky; top:0; z-index:40}
+.header-inner{display:flex; align-items:center; justify-content:space-between; padding:18px 0}
+.brand-link{text-decoration:none; color:var(--text)}
+.brand-title{font-size:20px; font-weight:700; color:var(--accent)}
+.brand-sub{font-size:12px; color:var(--muted)}
+
+/* nav */
+.site-nav{display:flex; gap:18px}
+.nav-link{color:var(--muted); text-decoration:none; padding:8px 10px; border-radius:8px}
+.nav-link:hover, .nav-link.active{color:var(--text); background:rgba(255,255,255,0.02)}
+
+/* Hero */
+.hero{padding:48px 0; display:flex; gap:24px; align-items:center}
+.hero-inner{display:flex; gap:36px; align-items:center; justify-content:space-between}
+.hero-text h1{font-size:46px; margin:0; color:var(--accent)}
+.lead{color:var(--muted); margin-top:8px}
+.hero-cta{margin-top:18px}
+.btn{display:inline-block; background:var(--accent); color:#111; padding:10px 16px; border-radius:8px; text-decoration:none; font-weight:600}
+.btn.ghost{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.06); margin-left:10px}
+.hero-media{width:360px}
+
+/* timeline */
+.timeline-section{padding-top:30px}
+.timeline-wrapper{background:var(--panel); padding:18px; border-radius:12px; margin-top:18px}
+.timeline-range{width:100%}
+.timeline-cards{margin-top:12px}
+
+/* grid system */
+.grid-3{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:18px}
+.grid-2{display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:18px}
+.card{background:var(--panel); border-radius:var(--radius); overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.6)}
+.card img{width:100%; display:block; height:200px; object-fit:cover}
+.card-body{padding:14px}
+
+/* footer */
+.site-footer{border-top:1px solid rgba(255,255,255,0.03); padding:30px 0; margin-top:40px}
+.footer-grid{display:flex; gap:18px; justify-content:space-between; flex-wrap:wrap}
+.footer-grid div{flex:1; min-width:200px; color:var(--muted)}
+.credits{margin-top:18px; color:var(--muted); font-size:13px; text-align:center}
+
+/* utilities */
+.muted{color:var(--muted)}
+.note{font-size:13px; color:var(--muted)}
+.mini-btn{background:transparent; color:var(--text); border:1px solid rgba(255,255,255,0.04); padding:8px 12px; border-radius:8px}
+/* responsive */
+@media (max-width:900px){
+  .hero-inner{flex-direction:column; align-items:flex-start}
+  .hero-media{width:100%}
+}

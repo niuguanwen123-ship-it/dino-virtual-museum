@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>馆藏画廊 · 史前巨兽</title>
+<link rel="stylesheet" href="styles.css" />
+<script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+</head>
+<body>
+<header class="site-header container">
+  <a href="index.html" class="brand-link">← 返回首页</a>
+  <h1>馆藏画廊</h1>
+</header>
+
+<main class="container">
+  <section>
+    <p>每个条目包含：高清图片、标签（年代/地点/标本编号）、描述、引用来源与 3D 模型（若有）。</p>
+  </section>
+
+  <section class="grid-2">
+    <!-- Card 1 -->
+    <article class="card">
+      <img src="https://www.amnh.org/var/ezflow_site/storage/images/.../triceratops-fossil.jpg" alt="三角龙标本">
+      <div class="card-body">
+        <h3>三角龙 · Triceratops</h3>
+        <p><strong>时代：</strong>晚白垩纪</p>
+        <p>解说：三角龙以其巨大的颅骨与角板著称。代表标本：AMNH-TRI-001（示例）。</p>
+        <p><strong>来源：</strong>American Museum of Natural History（请授权后使用）</p>
+        <!-- 3D viewer: 替换 src 为你的 glb 链接 -->
+        <model-viewer src="https://modelviewer.dev/shared-assets/models/Astronaut.glb" alt="三角龙 3D 模型示例" camera-controls style="width:100%; height:320px;"></model-viewer>
+      </div>
+    </article>
+
+    <!-- Card 2 -->
+    <article class="card">
+      <img src="https://images.nhm.ac.uk/tyrannosaurus-rex.jpg" alt="霸王龙">
+      <div class="card-body">
+        <h3>霸王龙 · Tyrannosaurus rex</h3>
+        <p><strong>时代：</strong>晚白垩纪</p>
+        <p>解说：顶级掠食者，颅骨强壮。代表标本：AMNH-TREX-001（示例）。</p>
+        <p><strong>来源：</strong>AMNH / 博物馆档案</p>
+        <model-viewer src="https://modelviewer.dev/shared-assets/models/FlightHelmet.glb" alt="霸王龙 3D 模型示例" camera-controls style="width:100%; height:320px;"></model-viewer>
+      </div>
+    </article>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">示例图片需授权 · 模型为示例资源</div>
+</footer>
+<script>
+document.getElementById('year')?.remove?.(); /* in case included elsewhere */
+</script>
+</body>
+</html>
